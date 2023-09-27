@@ -33,7 +33,7 @@ class AuthController extends Controller
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
-        ]);
+        ])->assignRole('customer');
 
         $token = JWTAuth::fromUser($user);
 
