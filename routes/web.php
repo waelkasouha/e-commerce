@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $user = User::find(2);
-    $roles = $user->roles;
-    dd($roles);
+    return view('welcome');
 });
-
-// $user = User::find(1);
-// $roles = $user->roles;
-// dd($roles);
