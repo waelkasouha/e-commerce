@@ -16,25 +16,17 @@ class ShoppingCartController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Add an product.
      */
-    public function store(Request $request)
+    public function addProduct($productId, $quantity)
     {
         //
     }
 
     /**
-     * Display the specified resource.
+     * Remove an product.
      */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function removeProduct($productId, $quantity)
     {
         //
     }
