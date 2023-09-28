@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -12,7 +13,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $brands = Brand::all();
+        return response()->json($brands);
     }
 
     /**
@@ -20,7 +22,12 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $brand = Brand::create($request->all());
+        return response()->json($brand, 201);
     }
 
     /**
@@ -28,7 +35,8 @@ class BrandController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+        return response()->json($brand);
     }
 
     /**
@@ -36,7 +44,13 @@ class BrandController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $brand = Brand::findOrFail($id);
+        $brand->update($request->all());
+        return response()->json($brand);
     }
 
     /**
@@ -44,6 +58,8 @@ class BrandController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+        $brand->delete();
+        return response()->json(null, 204);
     }
 }
