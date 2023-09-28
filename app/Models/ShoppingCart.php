@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ShoppingCart extends Model
@@ -13,16 +12,21 @@ class ShoppingCart extends Model
 
     protected $fillable = [
         'user_id',
-        'total_payment_price'
+        'product_id',
+        'price',
+        'quantity',
+        'total_payment_price',
     ];
 
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'id', 'user_id');
-    }
 
-    public function order(): HasMany
-    {
-        return $this->hasMany(Order::class, 'id', 'order_id');
-    }
+
+  public function products(): HasMany
+  {
+      return $this->hasMany(Product::class, 'id', 'product_id');
+  }
+
+  public function users(): HasMany
+  {
+      return $this->hasMany(Cart::class, 'id', 'user_id');
+  }
 }

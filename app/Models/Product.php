@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
@@ -33,8 +34,8 @@ class Product extends Model
         return $this->hasMany(Image::class, 'product_id');
     }
 
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
+    public function shopping_cart(): BelongsTo
+     {
+         return $this->belongsTo(ShoppingCart::class, 'product_id', 'id');
+     }
 }

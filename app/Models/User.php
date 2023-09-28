@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -46,9 +47,14 @@ class User extends Authenticatable implements JWTSubject
         'password' => 'hashed',
     ];
 
-    public function shopping_cart(): HasMany
+    public function shopping_cart(): BelongsTo
     {
-        return $this->hasMany(ShoppingCart::class, 'id', 'shopping_cart_id');
+        return $this->belongsTo(ShoppingCart::class, 'id', 'user_id');
+    }
+
+    public function order(): BelongsTo
+    {
+        return $this->belongsTo(Order::class, 'user_id', 'id');
     }
 
     /**
