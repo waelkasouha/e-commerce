@@ -46,9 +46,9 @@ class User extends Authenticatable implements JWTSubject
         'password' => 'hashed',
     ];
 
-    public function orders(): HasMany
+    public function shopping_cart(): HasMany
     {
-        return $this->hasMany(Order::class, 'id', 'order_id');
+        return $this->hasMany(ShoppingCart::class, 'id', 'shopping_cart_id');
     }
 
     /**

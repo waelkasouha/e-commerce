@@ -4,20 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'total_price',
+        'shopping_cart_id',
+        'product_id',
+        'quantity'
+
     ];
 
-
-    public function users(): HasMany
+    public function product()
     {
-        return $this->hasMany(User::class, 'id', 'user_id');
+        return $this->hasOne(Product::class);
+    }
+
+    public function shopping_cart()
+    {
+        return $this->belongsTo(ShoppingCart::class);
     }
 }

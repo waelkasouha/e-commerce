@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('shopping_carts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->decimal('total_payment_price', 10, 2)->default(0);
             $table->timestamps();
         });
     }
