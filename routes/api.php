@@ -25,5 +25,5 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/cart', [ShoppingCartController::class, 'index']);
 Route::post('/cart/add/{product_id}', [ShoppingCartController::class, 'addProduct']);
-Route::post('/cart/remove/{product_id}', [AuthController::class, 'removeProduct']);
-Route::post('/orders/place', [AuthController::class, 'confirmOrder']);
+Route::post('/cart/remove/{product_id}', [ShoppingCartController::class, 'removeProduct']);
+Route::post('/orders/place', [OrderController::class, 'confirmOrder']);
